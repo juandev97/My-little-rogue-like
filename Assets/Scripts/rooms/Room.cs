@@ -8,21 +8,7 @@ public class Room : MonoBehaviour
     public List<GameObject> doorCollidersObj;
     bool activeRoom;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void FixedUpdate()
-    {
-        
-    }
 
     public void OnBorderTouched(string collName)
     {
