@@ -16,19 +16,19 @@ public class Room : MonoBehaviour
         switch(collName)
         {
         case "L":
-            dx = -25; dy = 0;
+            dx = -23; dy = 0;
             pdx = -8; pdy = 0;
             break;
         case "R":
-            dx = 25; dy = 0;
+            dx = 23; dy = 0;
             pdx = 8; pdy = 0;
             break;
         case "U":
-            dx = 0; dy = 17;
+            dx = 0; dy = 15;
             pdx = 0; pdy = 8;
             break;
         case "D":
-            dx = 0; dy = -17;
+            dx = 0; dy = -15;
             pdx = 0; pdy = -8;
             break;
         default:

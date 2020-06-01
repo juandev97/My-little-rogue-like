@@ -98,6 +98,7 @@ public class Level_generator : MonoBehaviour {
         bool roomLeft = Physics2D.OverlapCircle(roomPoosition + new Vector3(-Xoffset,0f,0f), .2f, whatIsRoom);
         bool roomRight = Physics2D.OverlapCircle(roomPoosition + new Vector3(Xoffset,0f,0f), .2f, whatIsRoom);
         
+
         int Nhcount = 0;
         
         if(roomAbove){
