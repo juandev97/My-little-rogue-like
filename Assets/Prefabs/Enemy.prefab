@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7023353796009448394}
   - component: {fileID: -3252750597318221999}
   - component: {fileID: 1790562734088373746}
+  - component: {fileID: -822714254679523784}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 04154edaa48bd7b42a5b956c472acf13, type: 3}
   m_Color: {r: 0, g: 0.13757372, b: 1, a: 1}
   m_FlipX: 0
@@ -116,4 +117,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8692b8531a71c074188bb989e4de3715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 2
+  dropObjects:
+  - {fileID: 11400000, guid: 69cceb6040804884dbe181b7b60d0532, type: 2}
+  - {fileID: 11400000, guid: 5e2cf4a1ef1c6bd458805c7ec36c3cfc, type: 2}
+  - {fileID: 11400000, guid: 32aa1d68864c3ec4e95d8684b022dfef, type: 2}
+  dropPercents:
+  - 0.8
+  - 0.7
+  - 0.6
+--- !u!58 &-822714254679523784
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526755941880996285}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.017763972, y: -0.032829404}
+  serializedVersion: 2
+  m_Radius: 0.6941954
