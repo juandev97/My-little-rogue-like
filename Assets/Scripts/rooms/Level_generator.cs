@@ -1,4 +1,7 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Level_generator : MonoBehaviour {
     public GameObject roomLayout;
@@ -11,28 +14,45 @@ public class Level_generator : MonoBehaviour {
     public enum Direction {up, right, down, left};
     public Direction selectedDirection;
 
+
+    public LayerMask whatIsRoom;
+
     public float Xoffset=23f,Yoffset=15f;
+
+    private List<GameObject> lista = new List<GameObject>();
+
     private void Start() {
+        
         Instantiate(roomLayout, generatorPoint.position ,generatorPoint.rotation).GetComponent<SpriteRenderer>().color = StartColor;
-        selectedDirection = (Direction) Random.Range(0,4);
+        selectedDirection = (Direction) UnityEngine.Random.Range(0,4);
         MoveGenerationPoint();
 
         for(int i=0; distanceToEnd >= i; i++){
-            Instantiate(roomLayout, generatorPoint.position ,generatorPoint.rotation);
-            selectedDirection = (Direction) Random.Range(0,4);
+            GameObject newRoom = Instantiate(roomLayout, generatorPoint.position ,generatorPoint.rotation);
+            
+            lista.Add(newRoom);
+
+            selectedDirection = (Direction) UnityEngine .Random.Range(0,4);
             MoveGenerationPoint(); 
             
+            while(Physics2D.OverlapCircle(generatorPoint.position, 2f, whatIsRoom))
+            {
+                MoveGenerationPoint();
+            }
             //ULTIMA SALA 
-            if(i == distanceToEnd){
-                    Instantiate(roomLayout, generatorPoint.position ,generatorPoint.rotation).GetComponent<SpriteRenderer>().color = EndColor;
-    
+            if(i == distanceToEnd -1){
+                    
+                newRoom.GetComponent<SpriteRenderer>().color = EndColor;
+                lista.RemoveAt(lista.Count - 1);
             }
         }
 
     }
 
     private void Update() {
-        
+        if(Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     public void MoveGenerationPoint(){
