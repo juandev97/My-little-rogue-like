@@ -79,7 +79,27 @@ MonoBehaviour:
   StartColor: {r: 0.22241008, g: 0.22241008, b: 0.9245283, a: 0}
   EndColor: {r: 0.9245283, g: 0.10902455, b: 0.10902455, a: 0}
   generatorPoint: {fileID: 6333326641430495550}
-  distanceToEnd: 5
+  distanceToEnd: 12
   selectedDirection: 0
+  whatIsRoom:
+    serializedVersion: 2
+    m_Bits: 256
+  outlinePrefab:
+    sUp: {fileID: 4392934908468962739, guid: e88a66fcb72040a49bab360804d2dadd, type: 3}
+    sDown: {fileID: 1779269999155522050, guid: a9135688e3eddaf468d37d440f2a6998, type: 3}
+    sRight: {fileID: 6957483930761568720, guid: fec9a0d38bf91f348b242db68e7e1510,
+      type: 3}
+    sLeft: {fileID: 4997339559226291502, guid: 75862ab364efaec42b7b795156d6a122, type: 3}
+    dLR: {fileID: 1223545664687676559, guid: a79e79d1028354144ad0481dfdad2373, type: 3}
+    dUD: {fileID: 2912960158910862434, guid: 7ec01f9a3104ba14fb58b723c35f304f, type: 3}
+    dUR: {fileID: 5131699484867088870, guid: 82735b813884b5a4d8277ab801750e18, type: 3}
+    dLU: {fileID: 3239399464763826881, guid: 8f1be9341a5d0e54dad29e2ad4368863, type: 3}
+    dRD: {fileID: 3177210693492243655, guid: 2cb9f3c3f5b4fc24fa08b4b8b21913f7, type: 3}
+    dLD: {fileID: 5557099839994946675, guid: 891274269d86165408a5bb46f49f98ab, type: 3}
+    tLUD: {fileID: 6136096138278902625, guid: 93f573abfb362c54795d5693ba4ce921, type: 3}
+    tLDR: {fileID: 50917295235372950, guid: 0eed0c97569e7524f81218a0e2bf5e40, type: 3}
+    tURD: {fileID: 8697925975479891277, guid: c5595edb73bd45748b003a28235374c3, type: 3}
+    tLUR: {fileID: 7223753114532062622, guid: e2d1065a6002b3744910037e16f5a6cf, type: 3}
+    A: {fileID: 2958916732707179286, guid: 508815cef860cc642a5f6d5eac358826, type: 3}
   Xoffset: 23
   Yoffset: 15
