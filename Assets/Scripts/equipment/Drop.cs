@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
+    
+    public static string TAG = "collectable";
     static System.Random rnd = new System.Random();
     SpriteRenderer sprend;
     Rigidbody2D rgb;
-    IDroppable dropInfo;
+    public IDroppable dropInfo;
     Vector3 origin;
     const float SQR_MOVE_DISTANCE = 1.5f;
     const float FACTOR_MOVE = 1f;
@@ -50,14 +52,19 @@ public class Drop : MonoBehaviour
     public void Setup(IDroppable dropInfo)
     {
         this.dropInfo = dropInfo;
-        print(this.dropInfo);
+        //print(this.dropInfo);
         var s = dropInfo.GetSprite();
-        print(s);
-        print(sprend);
+        // print(s);
+        // print(sprend);
         sprend.sprite = s;
         var bounds = sprend.sprite.bounds;
         var factor = TARGET_HEIGHT / bounds.size.y;
         transform.localScale = new Vector3(factor,factor,factor);
         transform.position += Quaternion.Euler(0,0,rnd.Next()%360) * new Vector3(INIT_DISTANCE,0);
+    }
+
+    public void isPicked()
+    {
+        Destroy(gameObject);
     }
 }

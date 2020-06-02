@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73d40b6144fa3140829a083f225834c, type: 3}
   m_Name: Cap 1
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   buffs:
   - type: 2
     value: 0.3
