@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f456c203fac19b4a87f22f98dbda5e0, type: 3}
-  m_Name: Granny
+  m_Name: 2 Granny
   m_EditorClassIdentifier: 
-  id: 0
+  id: 2
   sprite: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
-  life: 0
-  speed: 0
+  life: 10
+  speed: 1
+  drops: []
