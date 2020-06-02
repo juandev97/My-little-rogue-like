@@ -22,13 +22,15 @@ public class Level_generator : MonoBehaviour {
 
     private GameObject endRoom;
 
-     private List<GameObject> lista_outlines = new List<GameObject>();
+    private GameObject StartRoom;
+    private List<GameObject> lista_outlines = new List<GameObject>();
 
     private List<GameObject> lista_rooms = new List<GameObject>();
 
     private void Start() {
         
-        Instantiate(roomLayout, generatorPoint.position ,generatorPoint.rotation).GetComponent<SpriteRenderer>().color = StartColor;
+       StartRoom =  Instantiate(roomLayout, generatorPoint.position ,generatorPoint.rotation);
+       StartRoom.GetComponent<SpriteRenderer>().color = StartColor;
         selectedDirection = (Direction) UnityEngine.Random.Range(0,4);
         MoveGenerationPoint();
 
@@ -47,23 +49,22 @@ public class Level_generator : MonoBehaviour {
             }
             //ULTIMA SALA 
             if(i == distanceToEnd -1)
-            {
-                    
-                newRoom.GetComponent<SpriteRenderer>().color = EndColor;
+            {  
                 lista_rooms.RemoveAt(lista_rooms.Count - 1);
                 endRoom = newRoom;
+                endRoom.GetComponent<SpriteRenderer>().color = EndColor;
             }
 
         }
 
 
     //creamos paredes
-        CreateRoomOutline(Vector3.zero);
+        CreateRoomOutline(StartRoom);
         foreach(GameObject room in lista_rooms)
         {
-            CreateRoomOutline(room.transform.position);
+            CreateRoomOutline(room);
         }
-        CreateRoomOutline(endRoom.transform.position);
+        CreateRoomOutline(endRoom);
 
     }
 
@@ -92,12 +93,26 @@ public class Level_generator : MonoBehaviour {
         }
     }
 
-     public void CreateRoomOutline(Vector3 roomPoosition){
+     public void CreateRoomOutline(GameObject room){
+
+        Vector3 roomPoosition = room.transform.position;
         bool roomAbove = Physics2D.OverlapCircle(roomPoosition + new Vector3(0f,Yoffset,0f), .2f, whatIsRoom);
         bool roomBelow = Physics2D.OverlapCircle(roomPoosition + new Vector3(0f,-Yoffset,0f), .2f, whatIsRoom);
         bool roomLeft = Physics2D.OverlapCircle(roomPoosition + new Vector3(-Xoffset,0f,0f), .2f, whatIsRoom);
         bool roomRight = Physics2D.OverlapCircle(roomPoosition + new Vector3(Xoffset,0f,0f), .2f, whatIsRoom);
         
+        foreach(Transform childCol in room.transform)
+        {
+        if(childCol.name == "U Door"){
+           childCol.GetComponent<Collider2D>().isTrigger = roomAbove;
+        }if(childCol.name == "D Door"){
+            childCol.GetComponent<Collider2D>().isTrigger = roomBelow;
+        }if(childCol.name == "R Door"){
+            childCol.GetComponent<Collider2D>().isTrigger = roomRight;
+        }if(childCol.name == "L Door"){
+            childCol.GetComponent<Collider2D>().isTrigger = roomLeft;
+        }
+        }
 
         int Nhcount = 0;
         

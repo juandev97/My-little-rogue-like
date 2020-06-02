@@ -10,7 +10,7 @@ public class RoomTransition : MonoBehaviour
     
     bool movingCamera;
     float dx,dy;
-    int CAMERA_MOVE_STEPS = 100;
+    int CAMERA_MOVE_STEPS = 80;
     int step = 0;
     Vector3 startCamera;
     Vector3 endCamera;
