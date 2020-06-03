@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour
     }
 
     SpriteRenderer sprend;
+    
+    [HideInInspector]
+    public GameObject hpBar;
+    public Vector3 hpBarOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +40,9 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         sprend = GetComponent<SpriteRenderer>();
         life = data.life;
-        
+        hpBar = Instantiate(GameManager.instance.hpBarPrefab,Vector3.zero,Quaternion.identity,
+                            GameObject.FindGameObjectWithTag("Canvas").transform);
+        hpBar.GetComponent<LifeBar>().Setup(life, transform.position + hpBarOffset);
     }
 
     // Update is called once per frame
@@ -51,6 +57,7 @@ public class Enemy : MonoBehaviour
         diff.z = 0;
         diff.Normalize();
         rgb.velocity = diff*speed;
+        hpBar.GetComponent<LifeBar>().MoveToUntranslatedCoords(transform.position + hpBarOffset);
     }
 
     void OnCollisionEnter2D(Collision2D collider)
@@ -65,6 +72,7 @@ public class Enemy : MonoBehaviour
     void IsAttacked(float damage)
     {
         life -= damage;
+        hpBar.GetComponent<LifeBar>().UpdateLife(life);
         if (life <= damage)
         {
             Die();
@@ -74,6 +82,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         DropAll();
+        Destroy(hpBar);
         Destroy(gameObject);
     }
 

@@ -117,15 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8692b8531a71c074188bb989e4de3715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  dropObjects:
-  - {fileID: 11400000, guid: 69cceb6040804884dbe181b7b60d0532, type: 2}
-  - {fileID: 11400000, guid: 5e2cf4a1ef1c6bd458805c7ec36c3cfc, type: 2}
-  - {fileID: 11400000, guid: 32aa1d68864c3ec4e95d8684b022dfef, type: 2}
-  dropPercents:
-  - 0.8
-  - 0.7
-  - 0.6
+  data: {fileID: 0}
+  life: 0
+  hpBar: {fileID: 0}
+  hpBarOffset: {x: 0, y: 0.838, z: 0}
 --- !u!58 &-822714254679523784
 CircleCollider2D:
   m_ObjectHideFlags: 0

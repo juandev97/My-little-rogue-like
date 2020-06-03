@@ -17,4 +17,8 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   life: 10
   speed: 1
-  drops: []
+  drops:
+  - dropObject: {fileID: 11400000, guid: 32aa1d68864c3ec4e95d8684b022dfef, type: 2}
+    dropPercent: 0.5
+  - dropObject: {fileID: 11400000, guid: 5e2cf4a1ef1c6bd458805c7ec36c3cfc, type: 2}
+    dropPercent: 0.4
