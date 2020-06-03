@@ -5,17 +5,21 @@ using UnityEngine.Assertions;
 
 public class PlayerEquip : MonoBehaviour
 {
-
+    static Dictionary<Equipment.Type,int> EQUIP_IDS = new Dictionary<Equipment.Type, int>()
+    {
+        {Equipment.Type.Weapon,0},
+        {Equipment.Type.Head,1},
+        {Equipment.Type.Boots,2},
+    };
     public float pickupDistanceToMouse;
-
-    public Equipment arm,head,feet;
-    
-    public GameObject armSlot, headSlot, feetSlot;
+    public List<Equipment> equipObjects;
+    public List<GameObject> equipSlots;
     void Start()
     {   
-        armSlot.GetComponent<Slot>().OnEquipmentChanged(arm);
-        headSlot.GetComponent<Slot>().OnEquipmentChanged(head);
-        feetSlot.GetComponent<Slot>().OnEquipmentChanged(feet);
+        for(int i = 0; i < equipObjects.Count; ++i)
+        {
+            equipSlots[i].GetComponent<Slot>().OnEquipmentChanged(equipObjects[i]);
+        }
     }
 
     void Update()
@@ -38,35 +42,13 @@ public class PlayerEquip : MonoBehaviour
         if (dropInfo is Equipment)
         {
             Equipment newEquipInfo = (Equipment)dropInfo;
-            switch (newEquipInfo.type)
+            int ubi = EQUIP_IDS[newEquipInfo.type];
+            if(equipObjects[ubi] != null)
             {
-                case Equipment.Type.Weapon:
-                    if (arm != null)
-                    {
-                        Throw(Equipment.Type.Weapon);
-                    }
-                    arm = newEquipInfo;
-                    armSlot.GetComponent<Slot>().OnEquipmentChanged(newEquipInfo);
-                    break;
-                case Equipment.Type.Head:
-                    if (head != null)
-                    {
-                        Throw(Equipment.Type.Head);
-                    }
-                    head = newEquipInfo;
-                    headSlot.GetComponent<Slot>().OnEquipmentChanged(newEquipInfo);
-                    break;
-                case Equipment.Type.Boots:
-                    if (feet != null)
-                    {
-                        Throw(Equipment.Type.Boots);
-                    }
-                    feet = newEquipInfo;
-                    feetSlot.GetComponent<Slot>().OnEquipmentChanged(newEquipInfo);
-                    break;
-                default:
-                    break;
+                Throw(newEquipInfo.type);
             }
+            equipObjects[ubi] = newEquipInfo;
+            equipSlots[ubi].GetComponent<Slot>().OnEquipmentChanged(newEquipInfo);
             
         }
         drop.isPicked();
@@ -75,24 +57,9 @@ public class PlayerEquip : MonoBehaviour
 
     void Throw(Equipment.Type equipType)
     {
-        Equipment toDrop = null;
-        switch(equipType)
-        {
-            case Equipment.Type.Weapon:
-                toDrop = arm;
-                arm = null;
-                break;
-            case Equipment.Type.Head:
-                toDrop = head;
-                head = null;
-                break;
-            case Equipment.Type.Boots:
-                toDrop = feet;
-                feet = null;
-                break;
-            default:
-                break;
-        }
+        int ubi = EQUIP_IDS[equipType];
+        Equipment toDrop = equipObjects[ubi];
+        equipObjects[ubi] = null;
         if(toDrop == null)
         {
             throw new System.Exception("Se ha solicitado soltar un elemento, pero era null");

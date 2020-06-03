@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
             return data.speed;
         }
     }
+    [HideInInspector]
+    public float life;
     private GameObject player;
     public List<EnemyData.DropProb> dropProbs
     {
@@ -33,7 +35,7 @@ public class Enemy : MonoBehaviour
         direction = new Vector3(0,0);
         player = GameObject.FindGameObjectWithTag("Player");
         sprend = GetComponent<SpriteRenderer>();
-        
+        life = data.life;
         
     }
 
@@ -55,9 +57,24 @@ public class Enemy : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Bullet"))
         {
-            DropAll();
-            Destroy(gameObject);
+            float damage = collider.gameObject.GetComponent<bullet>().damage;
+            IsAttacked(damage);
         }
+    }
+
+    void IsAttacked(float damage)
+    {
+        life -= damage;
+        if (life <= damage)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        DropAll();
+        Destroy(gameObject);
     }
 
     void DropAll()
@@ -71,7 +88,6 @@ public class Enemy : MonoBehaviour
                 drop.GetComponent<Drop>().Setup(dropProbs[i].dropObject);
             }
         }
-        Destroy(gameObject);
     }
 
     void OnValidate()

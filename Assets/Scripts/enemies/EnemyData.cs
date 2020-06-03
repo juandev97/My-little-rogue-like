@@ -14,7 +14,7 @@ public class EnemyData : ScriptableObject
     public int id;
     public Sprite sprite;
     public Color color;
-    public int life;
+    public float life;
     public float speed;
     public List<DropProb> drops;
     //public List<Equipment> dropObjects;

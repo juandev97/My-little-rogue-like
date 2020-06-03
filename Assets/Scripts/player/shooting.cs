@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class shooting : MonoBehaviour
 {
+    public static float MIN_BULLET_DAMAGE = 1f;
     public Transform firePoint;
     public GameObject bulletPrefab;
 
@@ -37,6 +38,28 @@ public class shooting : MonoBehaviour
     GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();  
     rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
-    
+    float damage = CalculateBulletDamage();
+    bullet.GetComponent<bullet>().Setup(damage);
+    }
+
+    float CalculateBulletDamage()
+    {
+        float bulletDamage = 0;
+        PlayerEquip playerEquip = gameObject.GetComponent<PlayerEquip>();
+        foreach(var equipment in playerEquip.equipObjects)
+        {
+            if (equipment != null)
+            {
+                foreach(var buff in equipment.buffs)
+                {
+                    if (buff.type == Buff.Type.Attack)
+                    {
+                        bulletDamage += buff.value;
+                    }
+                }
+            }
+        }
+        
+        return Mathf.Max(bulletDamage,MIN_BULLET_DAMAGE);
     }
 }

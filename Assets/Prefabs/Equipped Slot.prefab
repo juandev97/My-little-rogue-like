@@ -142,7 +142,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 5309683008490974995, guid: 60155baa2c6e13f43867b695c3b45477,
     type: 3}
-  m_Type: 2
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -163,4 +163,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61470751921114049afc714e222fb868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 0}
