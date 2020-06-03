@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - enemy
   - collectable
+  - Canvas
   layers:
   - Default
   - TransparentFX
