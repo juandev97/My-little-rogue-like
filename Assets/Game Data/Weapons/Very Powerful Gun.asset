@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Very Powerful Gun
   m_EditorClassIdentifier: 
   type: 0
-  buffs: []
-  sprite: {fileID: 0}
+  buffs:
+  - type: 1
+    value: 4
+  sprite: {fileID: 21300000, guid: 936ca26ea8077d748af186612532f789, type: 3}
