@@ -7,30 +7,44 @@ public class Boss_puke : MonoBehaviour
 
    public float fuerza;
     public Transform Goal;
-    float rotSpeed = .7f;
+    float rotSpeed = .82f;
     public float maxDist;
     public LayerMask whatIs;
+    public bool auxiliarPuke;
     public SpriteRenderer vomito;
     [SerializeField]
     float vomitValue;
+    Animator anim;
+    float auxiliarFuerza;
     // Start is called before the first frame update
     void Start()
     {
-        for(float i=0;i<vomitValue;i+=.1f){
-
-        StartCoroutine(vomitanding(i));
-        }
+        vomitValue = maxDist/5;
+        auxiliarFuerza = fuerza;
+        anim = GetComponent<Animator>();
     }
 
 
     IEnumerator vomitanding(float i){
-        yield return new  WaitForSeconds(2f);
+        yield return new  WaitForSeconds(.08f);
         vomito.size = new Vector2(.32f,i);
-        yield return new  WaitForSeconds(2f);
+        yield return new  WaitForSeconds(4f);
     }
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        puke(anim.GetBool("Boss_puke")); 
+    }
+
+    void puke(bool statePuke){
+        if (!statePuke && auxiliarPuke){
+
+        fuerza = auxiliarFuerza;
+        for(float i=0f;i<=vomitValue;i+=.01f){
+
+        StartCoroutine(vomitanding(i));
+        }
 
 
         Vector3 lookAtGoal = new Vector3(Goal.position.x,
@@ -57,5 +71,9 @@ public class Boss_puke : MonoBehaviour
                 hit.collider.transform.position+=adelante*fuerza*Time.deltaTime;
             }
         }
+    }else{
+        StartCoroutine(vomitanding(0));
+        fuerza =0f;
+    }
     }
 }
